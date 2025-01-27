@@ -7,7 +7,8 @@ const playfair = Playfair_Display({
   variable: "--font-playfair",
 });
 const lora = Lora({
-  subsets: ["latin"],
+  subsets: ["latin", "italic"],
+  weight: ["400", "500"],
   variable: "--font-lora",
 });
 const greatVibes = Great_Vibes({

@@ -1,4 +1,7 @@
+"use client";
 import { ProductCard } from "@/components/ProductCard";
+import { useEffect } from "react";
+import ProductApis from "../_utils/ProductApis";
 
 export default function ProductsPage() {
   return (

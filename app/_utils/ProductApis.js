@@ -1,7 +1,21 @@
-const { default: axiosClient } = require("./axiosClient");
+import axiosClient from "./axiosClient";
 
-const getLatestProducts = () => axiosClient.get("/products");
+export async function getProducts() {
+  try {
+    const response = await axiosClient.get("/products?populate=*");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    throw error;
+  }
+}
 
-export default {
-  getLatestProducts,
-};
+export async function getBanner() {
+  try {
+    const response = await axiosClient.get("/banner?populate=*");
+    return response.data;
+  } catch (error) {
+    console.error("Error fetching banner:", error);
+    throw error;
+  }
+}
