@@ -6,7 +6,7 @@ export async function POST(request) {
     const { message } = await request.json();
 
     const TELEGRAM_BOT_TOKEN = process.env.NEXT_PUBLIC_TELEGRAM_BOT_TOKEN;
-    const TELEGRAM_CHAT_ID = "7145094844"; // Replace with your channel username or chat ID
+    const TELEGRAM_CHAT_ID = process.env.NEXT_PUBLIC_TELEGRAM_CHAT_ID;
 
     if (!TELEGRAM_BOT_TOKEN) {
       return NextResponse.json(

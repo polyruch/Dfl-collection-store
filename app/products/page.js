@@ -14,13 +14,15 @@ export default function ProductsPage() {
         const response = await getProducts();
         if (response.data) {
           setProducts(
-            response.data.map((product) => ({
-              id: product.id,
-              name: product.title,
-              price: product.price,
-              image: product.banner.url,
-              documentId: product.documentId,
-            }))
+            response.data
+              .map((product) => ({
+                id: product.id,
+                name: product.title,
+                price: product.price,
+                image: product.banner.url,
+                documentId: product.documentId,
+              }))
+              .reverse()
           );
         }
       } catch (error) {
@@ -37,7 +39,9 @@ export default function ProductsPage() {
   if (isLoading) {
     return (
       <div className="container mx-auto px-4 py-8 max-w-full">
-        <h1 className="text-3xl font-bold text-pink-800 mb-6">All Products</h1>
+        <h1 className="text-3xl font-bold text-pink-800 mb-6">
+          Available Products
+        </h1>
         <div className="flex justify-center items-center h-64">
           <div className="w-12 h-12 border-4 border-pink-200 border-t-pink-500 rounded-full animate-spin"></div>
         </div>
@@ -48,7 +52,9 @@ export default function ProductsPage() {
   if (error) {
     return (
       <div className="container mx-auto px-4 py-8 max-w-full">
-        <h1 className="text-3xl font-bold text-pink-800 mb-6">All Products</h1>
+        <h1 className="text-3xl font-bold text-pink-800 mb-6">
+          Available Products
+        </h1>
         <div className="text-center text-red-600">{error}</div>
       </div>
     );
@@ -56,7 +62,9 @@ export default function ProductsPage() {
 
   return (
     <div className="container mx-auto px-4 py-8 max-w-full">
-      <h1 className="text-3xl font-bold text-pink-800 mb-6">All Products</h1>
+      <h1 className="text-3xl font-bold text-pink-800 mb-6">
+        Available Products
+      </h1>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />

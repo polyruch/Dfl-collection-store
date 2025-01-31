@@ -49,7 +49,7 @@ export default function CheckoutPage() {
     const newErrors = {};
 
     // Validate name (letters and spaces only)
-    if (!/^[A-Za-z\s]{5,}$/.test(formData.name)) {
+    if (!/^[A-Za-z\s]{4,}$/.test(formData.name)) {
       newErrors.name =
         "Name should contain only letters and be at least 5 characters long";
     }
