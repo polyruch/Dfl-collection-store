@@ -20,6 +20,7 @@ export default function ProductPage(props) {
   const [product, setProduct] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [selectedSize, setSelectedSize] = useState("");
+  const [quantity, setQuantity] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -169,12 +170,54 @@ export default function ProductPage(props) {
                 ))}
               </div>
             </div>
+            <div className="mb-6">
+              <h2 className="text-lg font-semibold text-pink-800 mb-2">
+                Quantity
+              </h2>
+              <div className="flex items-center space-x-2">
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={() => setQuantity(Math.max(1, quantity - 1))}
+                  className="text-pink-800 hover:bg-pink-400 hover:text-white"
+                >
+                  -
+                </Button>
+                <input
+                  type="number"
+                  min="1"
+                  value={quantity}
+                  onChange={(e) =>
+                    setQuantity(Math.max(1, parseInt(e.target.value) || 1))
+                  }
+                  className="w-16 text-center border border-pink-200 rounded-md p-2 text-pink-800 focus:outline-none focus:ring-2 focus:ring-pink-500"
+                />
+                <Button
+                  variant="outline"
+                  size="icon"
+                  onClick={() => setQuantity(quantity + 1)}
+                  className="text-pink-800 hover:bg-pink-400 hover:text-white"
+                >
+                  +
+                </Button>
+              </div>
+            </div>
           </div>
           <Button
             className="w-full bg-pink-500 hover:bg-pink-600 text-white text-lg py-6"
             disabled={!selectedSize}
+            onClick={() => {
+              const params = new URLSearchParams({
+                name: product.name,
+                price: product.price.toString(),
+                quantity: quantity.toString(),
+                size: selectedSize,
+                image: product.images[0],
+              });
+              window.location.href = `/checkout?${params.toString()}`;
+            }}
           >
-            Add to Cart
+            Add {quantity} to Cart
           </Button>
         </div>
       </div>
