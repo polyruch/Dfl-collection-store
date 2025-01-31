@@ -10,6 +10,16 @@ export async function getProducts() {
   }
 }
 
+export async function getProduct(id) {
+  try {
+    const response = await axiosClient.get(`/products/${id}?populate=*`);
+    return response.data.data;
+  } catch (error) {
+    console.error("Error fetching product:", error);
+    throw error;
+  }
+}
+
 export async function getBanner() {
   try {
     const response = await axiosClient.get("/banner?populate=*");

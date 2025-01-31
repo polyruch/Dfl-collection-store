@@ -27,8 +27,8 @@ export function ProductCard({ product }) {
         <CardTitle className="text-xl sm:text-xl font-semibold text-pink-800 font-playfair">
           {product.name}
         </CardTitle>
-        <CardDescription className="text-pink-600">
-          ${product.price.toFixed(2)}
+        <CardDescription className="text-pink-600 flex justify-between">
+          <span>{product.price.toFixed(2)} DA</span>
         </CardDescription>
       </CardContent>
       <CardFooter>
@@ -36,7 +36,7 @@ export function ProductCard({ product }) {
           asChild
           className="w-full bg-pink-500 hover:bg-pink-600 text-white"
         >
-          <Link href={`/products/${product.id}`}>View Product</Link>
+          <Link href={`/products/${product.documentId}`}>View Product</Link>
         </Button>
       </CardFooter>
     </Card>
