@@ -4,8 +4,9 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { motion, Variants } from "framer-motion";
+import { Suspense } from "react";
 
-export default function ThankYouPage() {
+function ThankYouContent() {
   const searchParams = useSearchParams();
   const orderDetails = {
     name: searchParams.get("name") || "",
@@ -141,5 +142,13 @@ export default function ThankYouPage() {
         </motion.div>
       </motion.div>
     </motion.div>
+  );
+}
+
+export default function ThankYouPage() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <ThankYouContent />
+    </Suspense>
   );
 }
